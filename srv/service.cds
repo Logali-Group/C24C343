@@ -9,4 +9,5 @@ service LogaliGroup {
     entity StockSet         as projection on entities.Stock;
     entity VH_Categories    as projection on entities.Categories;
     entity VH_SubCategories as projection on entities.SubCategories;
+    entity VH_Availability  as projection on entities.Availability;
 };

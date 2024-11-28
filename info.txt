@@ -1,0 +1,10 @@
+List Report Page
+
+Filtros                         -   @UI.SelectionFields
+Encabezado/Contador             -   @UI.HeaderInfo
+Tabla                           -   @UI.LineItem
+Etiqueta/Título                 -   @title
+Número/Unidad                   -   @Measures.Unit/@Common.IsUnit
+Rating Indicator                -   @UI.DataPoint
+Criticality(Estatus)            -   @UI.Criticality
+Mostrar un listado              -   @Common.ValueList

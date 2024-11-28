@@ -1,2 +1,16 @@
-ID;supplier;supplierName;webAddress
-f2bfcbe2-d046-423e-a855-33f980d5c562;100000004;Panorama Studios;http://www.panorama-studios.biz
+ID;supplier;supplierName;webAddress;contact_ID
+f2bfcbe2-d046-423e-a855-33f980d5c562;100000004;Panorama Studios;http://www.panorama-studios.biz;6d48e419-4abb-413d-9d49-197c209edc3b
+7d07678b-6cb9-462d-94bf-f67b9f84a029;100000005;TECUM;http://www.tecum-ag.de;8ed02dbe-466a-44a3-8678-87087cf1c80f
+6a9ebd38-2494-4f2b-a06b-f86370fe73c7;100000002;DelBont Industries;http://www.delbont.com;9f5c9e77-a27e-4a29-b135-332fbbb4f58f
+4eaab60b-804a-4bad-b846-d75644c40acf;100000000;SAP;http://www.sap.com;ca9d24a5-47a8-4080-aa6c-219ed4fdbeef
+4a1f5e5e-d52d-4029-8445-982a5db0e573;100000043;Danish Fish Trading Company;http://www.dftc.dk;f611d4f9-7ec0-4716-bd6a-37f924db1fb5
+1dfea412-a26f-4dda-9291-2d5cb305875a;100000042;Siwusha;http://www.siwusha.cn;12f4c9ea-6e41-4e80-9916-f83b0f56cbaa
+18100ce9-9f68-4725-b1ee-1f10a7caafed;100000003;Talpa;http://www.talpa-hannover.de;1cb27206-3f57-498d-a359-fe15852bb09e
+cad3708c-2636-4a40-9671-0ca9d93f6a1a;100000021;Florida Holiday Company;http://www.flor-hc.com;b16c8570-094f-47e0-b83d-5e956983f601
+872bc985-1511-48d6-950a-7f9852be3574;100000032;Angeré;http://www.angere.fr;abf5ed2f-13f2-4b97-a152-97ba83aae643
+d8bc45d8-d333-45e4-8e4a-ae545127eb48;100000009;Telecomunicaciones Star;http://www.telecomunicacionesstar.com;48642f59-4bdb-46fb-a96d-d34a689fc6d6
+bf7f23ef-4d21-407b-a5f4-b7e023e925d4;100000019;Pateu;http://www.pateu.fr;5907314d-6f69-4833-af49-b797d94be485
+c577a3ff-ac5a-4736-ba85-8dbf97dea3fc;100000025;Tessile Casa Di Roma;http://www.tcdr.it;8dba4d9a-928e-404e-a049-c17ccd534cc1
+d8bfe68c-0de0-413c-b5e1-be3c51742dd9;100000033;PC Gym Tec;http://www.pc-gym-tec.com;2faa73ee-c09c-4425-bace-970f376431bc
+d2ac8e67-c315-4cc9-9b02-f032119066fd;100000011;Alpine Systems;http://www.alp-systems.at;dfd4e354-e2fc-46ff-a774-cd574fd8182b
+3d9ad6c8-6121-499e-a01e-2f682c5cbf73;100000013;HEPA Tec;http://www.hepa-tec.de;dde59948-3c9b-4d4a-9198-ca30d1aaaa80

@@ -2,7 +2,8 @@ namespace com.logaligroup;
 
 using {
     cuid,
-    managed
+    managed,
+    sap.common.CodeList
 } from '@sap/cds/common';
 
 type MyDecimal : Decimal(5, 3);
@@ -13,12 +14,17 @@ entity Products : cuid, managed {
         description  : LargeString;
         category     : Association to Categories; // category_ID      category/category
         subCategory  : Association to SubCategories; // subCategory_ID   subCategory/description
-        supplier     : Association to Suppliers;
-        availability : String;
+        supplier     : Association to Suppliers;    // supplier_ID 
+        availability : Association to Availability; // availability_code
+        criticality  : Integer;
         rating       : Decimal(3, 2);
         price        : Decimal(6, 2);
         currency     : String(3);
         details      : Association to Details; //details_ID
+        toReviews    : Association to many Reviews
+                           on toReviews.product = $self;
+        toStock      : Association to many Stock
+                           on toStock.product = $self;
 };
 
 entity Details : cuid {
@@ -35,6 +41,7 @@ entity Suppliers : cuid {
     key supplier     : String(9);
         supplierName : String(40);
         webAddress   : String;
+        contact      : Association to Contacts; //contact_ID
 };
 
 entity Contacts : cuid {
@@ -48,6 +55,7 @@ entity Reviews : cuid {
     creationDate : Date;
     user         : String(40);
     reviewText   : LargeString;
+    product      : Association to Products; //product_ID and product_product
 };
 
 entity Stock : cuid {
@@ -58,6 +66,8 @@ entity Stock : cuid {
     target      : MyDecimal;
     lotSize     : Decimal(6, 3);
     quantity    : Decimal(6, 3);
+    unit        : String(2);
+    product     : Association to Products; //product_ID and product_product
 };
 
 entity Categories : cuid {
@@ -72,3 +82,11 @@ entity SubCategories : cuid {
     description : LargeString;
     category    : Association to Categories; //category_ID
 };
+
+entity Availability : CodeList {
+    key code : String enum {
+            InStock         = 'In Stock';           //Disponible - Verde = 3
+            NotInStock      = 'Not In Stock';       //No Disponible - Rojo = 1
+            LowAvailability = 'Low Availability';   //Poca Disponibilidad - Naranja = 2
+        };
+}
