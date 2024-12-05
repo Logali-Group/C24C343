@@ -2,10 +2,10 @@ using {LogaliGroup as projection} from '../service';
 
 annotate projection.DetailsSet with {
     baseUnit    @title: 'Base Unit';
-    width       @title: 'Width'           @Measures.Unit: unitWeight;
+    width       @title: 'Width'           @Measures.Unit: unitVolume;
     height      @title: 'Height'          @Measures.Unit: unitVolume;
     depth       @title: 'Depth'           @Measures.Unit: unitVolume;
-    weight      @title: 'Weight'          @Measures.Unit: unitVolume;
+    weight      @title: 'Weight'          @Measures.Unit: unitWeight;
     unitVolume  @title: 'Unit Of Volume'  @Common.IsUnit;
     unitWeight  @title: 'Unit Of Weight'  @Common.IsUnit;
 };
@@ -24,6 +24,10 @@ annotate projection.DetailsSet with @(UI.FieldGroup #Details: {
         {
             $Type: 'UI.DataField',
             Value: height
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : depth
         },
         {
             $Type: 'UI.DataField',

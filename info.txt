@@ -8,3 +8,9 @@ Número/Unidad                   -   @Measures.Unit/@Common.IsUnit
 Rating Indicator                -   @UI.DataPoint
 Criticality(Estatus)            -   @UI.Criticality
 Mostrar un listado              -   @Common.ValueList
+
+
+Eventos del draft
+Crear --> NEW
+Actualizar --> UPDATE
+Eliminar --> DELETE

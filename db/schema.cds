@@ -22,22 +22,22 @@ entity Products : cuid, managed {
         criticality  : Integer;
         rating       : Decimal(3, 2);
         price        : Decimal(6, 2);
-        currency     : String(3);
-        details      : Association to Details; //details_ID
-        toReviews    : Association to many Reviews
+        currency     : String(3) default 'USD';
+        details      : Composition of Details; //details_ID
+        toReviews    : Composition of many Reviews
                            on toReviews.product = $self;
-        toStock      : Association to many Stock
+        toStock      : Composition of many Stock
                            on toStock.product = $self;
 };
 
 entity Details : cuid {
-    baseUnit   : String(2);
+    baseUnit   : String(2) default 'EA';
     width      : MyDecimal;
     height     : MyDecimal;
     depth      : MyDecimal;
     weight     : MyDecimal;
-    unitVolume : String(2);
-    unitWeight : String(2);
+    unitVolume : String(2) default 'CM';
+    unitWeight : String(2) default 'KG';
 };
 
 entity Suppliers : cuid {
@@ -69,7 +69,7 @@ entity Stock : cuid {
     target      : MyDecimal;
     lotSize     : Decimal(6, 3);
     quantity    : Decimal(6, 3);
-    unit        : String(2);
+    unit        : String(2) default 'EA';
     product     : Association to Products; //product_ID and product_product
 };
 

@@ -10,7 +10,7 @@ annotate projection.ProductsSet with @odata.draft.enabled;
 annotate projection.ProductsSet with {
     product      @title: 'Product';
     productName  @title: 'Product Name';
-    description  @title: 'Description';
+    description  @title: 'Description' @UI.MultiLineText;
     supplier     @title: 'Supplier';
     category     @title: 'Category';
     subCategory  @title: 'Sub-Category';
@@ -77,6 +77,11 @@ annotate projection.ProductsSet with {
                     ValueListProperty : 'ID'
                 },
                 {
+                    $Type : 'Common.ValueListParameterOut',
+                    LocalDataProperty : supplier_supplier,
+                    ValueListProperty : 'supplier',
+                },
+                {
                     $Type : 'Common.ValueListParameterDisplayOnly',
                     ValueListProperty : 'supplier'
                 }
@@ -86,6 +91,16 @@ annotate projection.ProductsSet with {
 };
 
 annotate projection.ProductsSet with @(
+    Common.SideEffects  : {
+        $Type : 'Common.SideEffectsType',
+        SourceProperties : [
+            supplier_ID
+        ],
+        TargetEntities : [
+            'supplier',
+            'supplier/contact'
+        ],
+    },
     Capabilities.FilterRestrictions : {
         $Type : 'Capabilities.FilterRestrictionsType',
         FilterExpressionRestrictions : [
