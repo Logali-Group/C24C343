@@ -1,5 +1,12 @@
 using {LogaliGroup as projection} from '../service';
 
+using from './annotations-suppliers';
+using from './annotations-details';
+using from './annotations-reviews';
+using from './annotations-stock';
+
+annotate projection.ProductsSet with @odata.draft.enabled;
+
 annotate projection.ProductsSet with {
     product      @title: 'Product';
     productName  @title: 'Product Name';
@@ -11,6 +18,7 @@ annotate projection.ProductsSet with {
     rating       @title: 'Average Rating';
     price        @title: 'Price per Unit' @Measures.Unit: currency;
     currency     @title: 'Currency' @Common.IsUnit;
+    mediaContent @title : 'Attachment';
 };
 
 annotate projection.ProductsSet with {
@@ -98,8 +106,20 @@ annotate projection.ProductsSet with @(
         $Type : 'UI.HeaderInfoType',
         TypeName : 'Product',
         TypeNamePlural : 'Products',
+        Title : {
+            $Type : 'UI.DataField',
+            Value : productName
+        },
+        Description : {
+            $Type : 'UI.DataField',
+            Value : product
+        }
     },
     UI.LineItem: [
+        {
+            $Type : 'UI.DataField',
+            Value : mediaContent,
+        },
         {
             $Type: 'UI.DataField',
             Value: product
@@ -142,5 +162,122 @@ annotate projection.ProductsSet with @(
         $Type : 'UI.DataPointType',
         Value : rating,
         Visualization : #Rating
-    }
+    },
+    UI.FieldGroup #MediaContent : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : mediaContent,
+                Label : ''
+            }
+        ]
+    },
+    UI.FieldGroup #Category : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : category_ID
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : subCategory_ID
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : supplier_ID
+            }
+        ]
+    },
+    UI.FieldGroup #Description : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : description,
+                Label : ''
+            }
+        ]
+    },
+    UI.FieldGroup #Availability : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : availability_code,
+                Label : '',
+                Criticality : criticality
+            }
+        ]
+    },
+    UI.FieldGroup #Price : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : price,
+                Label : ''
+            }
+        ]
+    },
+    UI.HeaderFacets  : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.FieldGroup#MediaContent',
+            Label : '',
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.FieldGroup#Category'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.FieldGroup#Description',
+            Label : 'Product Description'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.FieldGroup#Availability',
+            Label : 'Availability'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : '@UI.FieldGroup#Price',
+            Label : 'Price'
+        }
+    ],
+    UI.Facets  : [
+        {
+            $Type : 'UI.CollectionFacet',
+            Facets : [
+                    {
+                        $Type : 'UI.ReferenceFacet',
+                        Target : 'supplier/@UI.FieldGroup#Supplier',
+                        Label : 'Information'
+                    },
+                    {
+                        $Type : 'UI.ReferenceFacet',
+                        Target : 'supplier/contact/@UI.FieldGroup#Contact',
+                        Label : 'Contact Person'
+                    }
+            ],
+            Label : 'Supplier Information'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : 'details/@UI.FieldGroup#Details',
+            Label : 'Product Information'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : 'toReviews/@UI.LineItem',
+            Label : 'Reviews'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Target : 'toStock/@UI.LineItem',
+            Label : 'Stock Data'
+        }
+    ]
 );

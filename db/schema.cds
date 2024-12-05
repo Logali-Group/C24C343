@@ -12,9 +12,12 @@ entity Products : cuid, managed {
     key product      : String(8);
         productName  : String(40);
         description  : LargeString;
+        mediaContent : LargeBinary  @UI.IsImage @Core.MediaType: mimeType  @Core.ContentDisposition.Filename: fileName;
+        mimeType     : String       @Core.IsMediaType;
+        fileName     : String;
         category     : Association to Categories; // category_ID      category/category
         subCategory  : Association to SubCategories; // subCategory_ID   subCategory/description
-        supplier     : Association to Suppliers;    // supplier_ID 
+        supplier     : Association to Suppliers; // supplier_ID
         availability : Association to Availability; // availability_code
         criticality  : Integer;
         rating       : Decimal(3, 2);
@@ -85,8 +88,8 @@ entity SubCategories : cuid {
 
 entity Availability : CodeList {
     key code : String enum {
-            InStock         = 'In Stock';           //Disponible - Verde = 3
-            NotInStock      = 'Not In Stock';       //No Disponible - Rojo = 1
-            LowAvailability = 'Low Availability';   //Poca Disponibilidad - Naranja = 2
+            InStock         = 'In Stock'; //Disponible - Verde = 3
+            NotInStock      = 'Not In Stock'; //No Disponible - Rojo = 1
+            LowAvailability = 'Low Availability'; //Poca Disponibilidad - Naranja = 2
         };
 }
